@@ -35688,9 +35688,8 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
-  - component: {fileID: 963194229}
   - component: {fileID: 963194230}
-  - component: {fileID: 963194231}
+  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -35772,9 +35771,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b304cf189f6c98044b0be5ede7ace78e, type: 3}
+  m_Script: {fileID: 11500000, guid: b69c61d3e8bb9fe409d409a0fc48b460, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mouseXSensi: 120
+  mouseYSensi: 240
+  xRotation: 0
+  controller: {fileID: 1052473802}
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35784,29 +35787,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b69c61d3e8bb9fe409d409a0fc48b460, type: 3}
+  m_Script: {fileID: 11500000, guid: 97b0c298f92e89d47bfc12d2b4154f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseXSensi: 120
-  mouseYSensi: 240
-  xRotation: 0
-  controller: {fileID: 0}
---- !u!114 &963194231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b69c61d3e8bb9fe409d409a0fc48b460, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseXSensi: 120
-  mouseYSensi: 240
-  xRotation: 0
-  controller: {fileID: 0}
+  xZSpeed: 12
+  gravity: -10
+  groundDistance: 0.045
+  jumpHeight: 1.6
+  yDirection: {x: 0, y: 0, z: 0}
+  isGrounded: 0
+  groundChecker: {fileID: 0}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &963244915
 GameObject:
   m_ObjectHideFlags: 0
@@ -39312,10 +39305,10 @@ MonoBehaviour:
   jumpHeight: 1.6
   yDirection: {x: 0, y: 0, z: 0}
   isGrounded: 0
-  groundChecker: {fileID: 0}
+  groundChecker: {fileID: 1318507329}
   groundMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
 --- !u!1 &1054032803
 GameObject:
   m_ObjectHideFlags: 0
@@ -60378,7 +60371,6 @@ GameObject:
   - component: {fileID: 1621773506}
   - component: {fileID: 1621773509}
   - component: {fileID: 1621773508}
-  - component: {fileID: 1621773507}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -60400,28 +60392,6 @@ Transform:
   m_Father: {fileID: 1052473802}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1621773507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1621773505}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97b0c298f92e89d47bfc12d2b4154f20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  xZSpeed: 12
-  gravity: -10
-  groundDistance: 0.045
-  jumpHeight: 1.6
-  yDirection: {x: 0, y: 0, z: 0}
-  isGrounded: 0
-  groundChecker: {fileID: 0}
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!23 &1621773508
 MeshRenderer:
   m_ObjectHideFlags: 0

@@ -35688,6 +35688,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
+  - component: {fileID: 963194230}
   - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
@@ -35770,13 +35771,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b304cf189f6c98044b0be5ede7ace78e, type: 3}
+  m_Script: {fileID: 11500000, guid: b69c61d3e8bb9fe409d409a0fc48b460, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mouseXSensi: 120
   mouseYSensi: 240
   xRotation: 0
   controller: {fileID: 1052473802}
+--- !u!114 &963194230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97b0c298f92e89d47bfc12d2b4154f20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xZSpeed: 12
+  gravity: -10
+  groundDistance: 0.045
+  jumpHeight: 1.6
+  yDirection: {x: 0, y: 0, z: 0}
+  isGrounded: 0
+  groundChecker: {fileID: 0}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &963244915
 GameObject:
   m_ObjectHideFlags: 0
@@ -39209,6 +39232,7 @@ GameObject:
   - component: {fileID: 1052473802}
   - component: {fileID: 1052473801}
   - component: {fileID: 1052473803}
+  - component: {fileID: 1052473804}
   m_Layer: 0
   m_Name: FPS Player
   m_TagString: Untagged
@@ -39263,7 +39287,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf903c5ed58af6e49ad140f913451da2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xZSpeed: 4
+--- !u!114 &1052473804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1052473800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97b0c298f92e89d47bfc12d2b4154f20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xZSpeed: 12
   gravity: -10
   groundDistance: 0.045
   jumpHeight: 1.6
@@ -60375,7 +60411,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 37e3011481558b04e96bd3bb232bd8d9, type: 2}
+  - {fileID: 2100000, guid: 49624d8130666d341aac4818ed5d76b7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
