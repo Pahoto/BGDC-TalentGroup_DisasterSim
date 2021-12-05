@@ -4,8 +4,8 @@ public class PlayerMovement : MonoBehaviour
     float x = 0, z = 0;
     Vector3 xZDirection;
     CharacterController controller;
-    public float xZSpeed = 12f, gravity = -10f,
-        groundDistance = 0.045f, jumpHeight = 1.6f;
+    public float xZSpeed = 4f, gravity = -10f, 
+        groundDistance = 0.06f, jumpHeight = 1.6f;
     public Vector3 yDirection;
     public bool isGrounded;
     public Transform groundChecker;
