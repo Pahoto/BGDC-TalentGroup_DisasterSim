@@ -1,37 +1,33 @@
 using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
-    float x = 0, z = 0;
-    Vector3 xZDirection;
-    CharacterController controller;
-    public float xZSpeed = 4f, gravity = -10f, 
-        groundDistance = 0.06f, jumpHeight = 1.6f;
-    public Vector3 yDirection;
-    public bool isGrounded;
-    public Transform groundChecker;
-    public LayerMask groundMask;
+    float x = 0f, z = 0f;
+    Vector3 xZDirection = new Vector3(0f, 0f, 0f);
+    CharacterController controller = null;
+    public float xZSpeed = 4f, gravity = -10f, groundDistance = 0.06f, jumpHeight = 1.6f, roofDistance = 0.1f;
+    public Vector3 yDirection = new Vector3(0f, 0f, 0f);
+    public bool isGrounded, isRoofed;
+    public Transform groundChecker = null, roofChecker = null;
+    public LayerMask groundMask, roofMask;
     void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
     }
     void Update()
     {
-        if (isGrounded && yDirection.y < 0) yDirection.y = 0;
-        
+        if (isGrounded && yDirection.y < 0f) yDirection.y = 0f;
         x = Input.GetAxis("Horizontal");
         z = Input.GetAxis("Vertical");
         xZDirection = transform.right * x + transform.forward * z;
         controller.Move(xZDirection * xZSpeed * Time.deltaTime);
-        
-        if(isGrounded && Input.GetKeyDown("space"))
-            yDirection.y = Mathf.Sqrt(-2 * gravity * jumpHeight);
-
+        if(isGrounded && Input.GetKeyDown(KeyCode.Space)) yDirection.y = Mathf.Sqrt(-2f * gravity * jumpHeight);
         yDirection.y += gravity * Time.deltaTime;
         controller.Move(yDirection * Time.deltaTime);
     }
     void FixedUpdate()
     {
-        isGrounded = Physics.CheckSphere(groundChecker.
-            position, groundDistance, groundMask);
+        isGrounded = Physics.CheckSphere(groundChecker.position, groundDistance, groundMask);
+        isRoofed = Physics.CheckSphere(roofChecker.position, roofDistance, roofMask);
+        if (isRoofed) yDirection.y += 3f * gravity * Time.deltaTime;
     }
 }
