@@ -39112,6 +39112,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+<<<<<<< Updated upstream
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &868983518
 MeshFilter:
@@ -93724,3 +93725,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2146108109}
   m_Mesh: {fileID: 8049994630806362473, guid: c1ed58717f527654b9bea78be400ead4, type: 3}
+=======
+  m_AdditionalVertexStreams: 
+>>>>>>> Stashed changes

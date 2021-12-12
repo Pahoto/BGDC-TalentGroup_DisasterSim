@@ -44,4 +44,8 @@ public class DialogueCollisionChecker : MonoBehaviour
             theText.text = "Yeahhh!!!";
         }
     }
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes
