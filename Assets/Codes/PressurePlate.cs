@@ -33,8 +33,6 @@ public class PressurePlate : MonoBehaviour
     
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.gameObject.name);
-
         if(collision.gameObject.tag == "Player")
         {
             if(pressed == false)
@@ -59,58 +57,5 @@ public class PressurePlate : MonoBehaviour
             }
         }
     }
-
-    //void OnCollisionStay(Collision collision)
-    //{
-    //    if (collision.gameObject.tag == "Player")
-    //    {
-    //        if (pressed == false)
-    //        {
-    //            pressurePlate.GetComponent<Renderer>().material.color = Color.cyan;
-
-    //            pressed = true;
-    //            allPressed = true;
-
-    //            foreach (GameObject pressurePlate in pressurePlates)
-    //            {
-    //                if (pressurePlate.GetComponent<PressurePlate>().pressed == false)
-    //                {
-    //                    allPressed = false;
-    //                }
-    //            }
-
-    //            if (allPressed == true)
-    //            {
-    //                obstacle.SetActive(false);
-    //            }
-    //        }
-    //    }
-    //}
-
-    //void OnCollisionExit(Collision collision)
-    //{
-    //    if (collision.gameObject.tag == "Player")
-    //    {
-    //        if (pressed == false)
-    //        {
-    //            pressurePlate.GetComponent<Renderer>().material.color = Color.cyan;
-
-    //            pressed = true;
-    //            allPressed = true;
-
-    //            foreach (GameObject pressurePlate in pressurePlates)
-    //            {
-    //                if (pressurePlate.GetComponent<PressurePlate>().pressed == false)
-    //                {
-    //                    allPressed = false;
-    //                }
-    //            }
-
-    //            if (allPressed == true)
-    //            {
-    //                obstacle.SetActive(false);
-    //            }
-    //        }
-    //    }
-    //}
+    
 }

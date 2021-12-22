@@ -9,9 +9,22 @@ public class PlayerMovement : MonoBehaviour
     public bool isGrounded, isRoofed;
     public Transform groundChecker = null, roofChecker = null;
     public LayerMask groundMask, roofMask;
+
+    // For Pressure Plate
+    private GameObject[] pressurePlates;
+    GameObject obstacle;
+
+    public bool pressed = false;
+    private bool allPressed = false;
+
     void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
+
+        // For Pressure Plate
+        pressurePlates = GameObject.FindGameObjectsWithTag("Pressure Plate");
+
+        obstacle = GameObject.Find("LALALA");
     }
     void Update()
     {
@@ -29,5 +42,32 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = Physics.CheckSphere(groundChecker.position, groundDistance, groundMask);
         isRoofed = Physics.CheckSphere(roofChecker.position, roofDistance, roofMask);
         if (isRoofed) yDirection.y += 3f * gravity * Time.deltaTime;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Pressure Plate")
+        {
+            if (pressed == false)
+            {
+                collision.gameObject.GetComponent<Renderer>().material.color = Color.cyan;
+
+                pressed = true;
+                allPressed = true;
+
+                foreach (GameObject pressurePlate in pressurePlates)
+                {
+                    if (pressurePlate.GetComponent<PressurePlate>().pressed == false)
+                    {
+                        allPressed = false;
+                    }
+                }
+
+                if (allPressed == true)
+                {
+                    obstacle.SetActive(false);
+                }
+            }
+        }
     }
 }
