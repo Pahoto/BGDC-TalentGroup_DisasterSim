@@ -66,7 +66,7 @@ public class DialogueCollisionChecker : MonoBehaviour
         else if (timerRunning == false && dialogue0 == 4)
         {
             theText.text = "Where are we going...? What!? DonÅft you remember? WerenÅft you the one who told me to prepare for today? What has happened to you?";
-            StartCoroutine(Timer(10f, 0, 2));
+            StartCoroutine(Timer(10f, 0, -1));
         }
     }
 
@@ -89,6 +89,9 @@ public class DialogueCollisionChecker : MonoBehaviour
         yield return new WaitForSeconds(time);
         if (dialogueNumber == 0) dialogue0++;
         timerRunning = false;
-        theImage.texture = dialogueImages[changeImage];
+        if(changeImage != -1)
+        {
+            theImage.texture = dialogueImages[changeImage];
+        }
     }
 }
