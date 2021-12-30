@@ -8,10 +8,15 @@ public class DialogueCollisionChecker : MonoBehaviour
     private GameObject[] dialogueBoxes;
     public GameObject textBox;
     public GameObject textContent;
+
+    public RawImage theImage;
     private Text theText;
+    public Texture[] dialogueImages = new Texture[3];
+    private int currentImage;
 
     private int dialogue0;
     private bool dialogue1key;
+
 
     void Awake()
     {
@@ -30,12 +35,14 @@ public class DialogueCollisionChecker : MonoBehaviour
     {
         dialogue0 = 0;
         dialogue1key = false;
+        currentImage = 0;
 
         theText = textContent.GetComponent<Text>();
+        theImage.texture = dialogueImages[currentImage];
 
         // For Dialgoue
         theText.text = "Hey, wake up! You need to go, right?";
-        StartCoroutine(Timer(4f, 0));
+        StartCoroutine(Timer(4f, 0, 2));
     }
 
     // Update is called once per frame
@@ -44,22 +51,22 @@ public class DialogueCollisionChecker : MonoBehaviour
         if(timerRunning == false && dialogue0 == 1)
         {
             theText.text = "5 minute...";
-            StartCoroutine(Timer(2.5f, 0));
+            StartCoroutine(Timer(2.5f, 0, 0));
         }
         else if(timerRunning == false && dialogue0 == 2)
         {
             theText.text = "What? No, you can't, you have to go now!";
-            StartCoroutine(Timer(5f, 0));
+            StartCoroutine(Timer(5f, 0, 2));
         }
         else if (timerRunning == false && dialogue0 == 3)
         {
             theText.text = "Where are we going?";
-            StartCoroutine(Timer(3f, 0));
+            StartCoroutine(Timer(3f, 0, 0));
         }
         else if (timerRunning == false && dialogue0 == 4)
         {
             theText.text = "Where are we going...? What!? DonÅft you remember? WerenÅft you the one who told me to prepare for today? What has happened to you?";
-            StartCoroutine(Timer(10f, 0));
+            StartCoroutine(Timer(10f, 0, 2));
         }
     }
 
@@ -76,11 +83,12 @@ public class DialogueCollisionChecker : MonoBehaviour
 
     // Timer
     private bool timerRunning = false;
-    IEnumerator Timer(float time, int dialogueNumber)
+    IEnumerator Timer(float time, int dialogueNumber, int changeImage)
     {
         timerRunning = true;
         yield return new WaitForSeconds(time);
         if (dialogueNumber == 0) dialogue0++;
         timerRunning = false;
+        theImage.texture = dialogueImages[changeImage];
     }
 }
