@@ -14,7 +14,7 @@ namespace KeySystem
             if (approachingCollider.name == "FPS Player")
             {
                 keyTake = true;
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
         }
     }
