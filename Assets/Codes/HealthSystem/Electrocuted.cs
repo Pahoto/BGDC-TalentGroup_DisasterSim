@@ -8,19 +8,22 @@ public class Electrocuted : MonoBehaviour
     
         void OnTriggerEnter(Collider other)
     {
-        if (other.name == "FPS Player") isElectrocuted = true;
+        if (other.name == "FPS Player")
+        {
+            electric.SetActive(true);
+            isElectrocuted = true;
+        }
     }
     void OnTriggerExit(Collider other)
     {
-        if (other.name == "FPS Player") isElectrocuted = false;
+        if (other.name == "FPS Player")
+        {
+            electric.SetActive(false);
+            isElectrocuted = false;
+        }
     }
     void FixedUpdate()
     {
-        if (isElectrocuted)
-        {
-            electric.SetActive(true);
-            playerHealth.TakeDamage(Time.deltaTime);
-        }
-        else electric.SetActive(false);
+        if (isElectrocuted) playerHealth.TakeDamage(Time.deltaTime);
     }
 }

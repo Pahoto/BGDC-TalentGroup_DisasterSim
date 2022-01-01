@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 namespace HealthSystem
-{
+{ // 117.6 2.847728 -197.33
     public class PlayerHealth : MonoBehaviour
     {
         float minHP = 0f;
@@ -15,9 +15,11 @@ namespace HealthSystem
 
         public Image fill = null;
         public Image icon = null;
+        public GameObject electric = null;
 
         void Start()
         {
+            electric.SetActive(false);
             hpSlider.minValue = minHP;
             hpSlider.maxValue = maxHP;
             iconColor = icon.color;

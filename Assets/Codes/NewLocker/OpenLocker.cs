@@ -9,14 +9,23 @@ namespace KeySystem
         public bool lockerTriggered = false;
         public bool openingLocker = false;
         public bool pauseInteraction = false;
+        public Crosshair crosshair = null;
 
         void OnTriggerEnter(Collider approachingCollider)
         {
-            if (approachingCollider.name == "Crosshair") lockerTriggered = true;
+            if (approachingCollider.name == "Crosshair" && !crosshair.isTouched)
+            {
+                crosshair.isTouched = true;
+                lockerTriggered = true;
+            }
         }
         void OnTriggerExit(Collider leavingCollider)
         {
-            if (leavingCollider.name == "Crosshair") lockerTriggered = false;
+            if (leavingCollider.name == "Crosshair")
+            {
+                if (crosshair.isTouched) crosshair.isTouched = false;
+                lockerTriggered = false;
+            }
         }
         IEnumerator PauseInteraction()
         {
