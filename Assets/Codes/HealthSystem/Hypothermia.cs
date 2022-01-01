@@ -23,11 +23,19 @@ public class Hypothermia : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.name == "FPS Player") isCold = true;
+        if (other.name == "FPS Player")
+        {
+            coldMeter.SetActive(true);
+            isCold = true;
+        }
     }
     void OnTriggerExit(Collider other)
     {
-        if (other.name == "FPS Player") isCold = false;
+        if (other.name == "FPS Player")
+        {
+            coldMeter.SetActive(false);
+            isCold = false;
+        }
     }
     IEnumerator PauseInteraction()
     {
@@ -37,17 +45,13 @@ public class Hypothermia : MonoBehaviour
         yield return new WaitForSeconds(1f);
         pauseInteraction = false;
     }
+    public void ResetMeter()
+    {
+        coldSlider.value = i = firstSec;
+    }
     void Update()
     {
-        if (!isCold || i > lastSec)
-        {
-            if (!isCold) coldMeter.SetActive(false);
-            coldSlider.value = i = firstSec;
-        }
-        else
-        {
-            coldMeter.SetActive(true);
-            if (!pauseInteraction) StartCoroutine(PauseInteraction());
-        }
+        if (!isCold || i > lastSec) ResetMeter();
+        else if (!pauseInteraction) StartCoroutine(PauseInteraction());
     }
 }
