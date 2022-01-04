@@ -6,6 +6,12 @@ public class Warm : MonoBehaviour
     public Hypothermia hypothermia = null;
     public bool isHealing = false;
 
+    void Start()
+    {
+        playerHealth = FindObjectOfType<PlayerHealth>();
+        hypothermia = FindObjectOfType<Hypothermia>();
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.name == "FPS Player")

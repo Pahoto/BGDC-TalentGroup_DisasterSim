@@ -11,6 +11,11 @@ namespace KeySystem
         public bool pauseInteraction = false;
         public Crosshair crosshair = null;
 
+        void Start()
+        {
+            crosshair = FindObjectOfType<Crosshair>();
+        }
+
         void OnTriggerEnter(Collider approachingCollider)
         {
             if (approachingCollider.name == "Crosshair" && !crosshair.isTouched)

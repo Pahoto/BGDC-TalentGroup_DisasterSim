@@ -9,6 +9,7 @@ public class Hypothermia : MonoBehaviour
 
     public PlayerHealth playerHealth = null;
     public GameObject coldMeter = null;
+    public GameObject healthMeter = null;
     public Slider coldSlider = null;
 
     int i = 0;
@@ -17,14 +18,18 @@ public class Hypothermia : MonoBehaviour
 
     void Start()
     {
+        playerHealth = FindObjectOfType<PlayerHealth>();
         coldSlider.minValue = firstSec;
         coldSlider.maxValue = lastSec;
+        coldMeter.SetActive(false);
+        healthMeter.SetActive(false);
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.name == "FPS Player")
         {
+            healthMeter.SetActive(true);
             coldMeter.SetActive(true);
             isCold = true;
         }
@@ -33,6 +38,7 @@ public class Hypothermia : MonoBehaviour
     {
         if (other.name == "FPS Player")
         {
+            healthMeter.SetActive(false);
             coldMeter.SetActive(false);
             isCold = false;
         }
