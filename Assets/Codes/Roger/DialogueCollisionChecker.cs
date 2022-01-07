@@ -21,7 +21,7 @@ public class DialogueCollisionChecker : MonoBehaviour
     void Awake()
     {
         dialogueBoxes = GameObject.FindGameObjectsWithTag("Dialogue Trigger");
-        foreach(GameObject dialogueBox in dialogueBoxes)
+        foreach (GameObject dialogueBox in dialogueBoxes)
         {
             dialogueBox.transform.localScale = new Vector3(0, 0, 0);
         }
@@ -47,11 +47,11 @@ public class DialogueCollisionChecker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(timerRunning == false && dialogue0 == 1)
+        if (timerRunning == false && dialogue0 == 1)
         {
             StartCoroutine(Timer(2f, 0, 2, "5 minutes..."));
         }
-        else if(timerRunning == false && dialogue0 == 2)
+        else if (timerRunning == false && dialogue0 == 2)
         {
             StartCoroutine(Timer(2.5f, 0, 0, "What? No, you can't, you have to go now!"));
         }
@@ -68,7 +68,7 @@ public class DialogueCollisionChecker : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.name == "Dialogue Collider 1")
+        if (other.gameObject.name == "Dialogue Collider 1")
         {
             textBox.transform.localScale = new Vector3(1, 1, 1);
             textContent.transform.localScale = new Vector3(1, 1, 1);
@@ -85,7 +85,7 @@ public class DialogueCollisionChecker : MonoBehaviour
         yield return new WaitForSeconds(time);
         if (dialogueNumber == 0) dialogue0++;
         timerRunning = false;
-        if(changeImage != -1)
+        if (changeImage != -1)
         {
             theImage.texture = dialogueImages[changeImage];
             theText.text = dialogue;
