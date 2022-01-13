@@ -17,7 +17,7 @@ TagManager:
   - Water
   - UI
   - Roof
-  - 
+  - Interaction
   - 
   - 
   - 
@@ -46,6 +46,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Black Screen With Dialogue
+  - name: UI
     uniqueID: 3583089425
+    locked: 0
+  - name: Interaction
+    uniqueID: 550147047
     locked: 0

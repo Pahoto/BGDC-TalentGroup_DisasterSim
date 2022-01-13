@@ -64,6 +64,10 @@ public class DialogueCollisionChecker : MonoBehaviour
         {
             StartCoroutine(Timer(3f, 0, 0, "Where are we going...? What!? DonÅft you remember? WerenÅft you the one who told me to prepare for today? What has happened to you?"));
         }
+        else if (timerRunning == false && dialogue0 == 5)
+        {
+            StartCoroutine(HideDialogueBox(3f));
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -92,12 +96,12 @@ public class DialogueCollisionChecker : MonoBehaviour
         }
     }
 
-    IEnumerator FadeBlackIn(int fadeSpeed)
+    IEnumerator FadeBlackIn(int fadeSpeed, float fadeTo = 0)
     {
         Color objectColor = blackScreen.GetComponent<Image>().color;
         float fadeAmount;
 
-        while (blackScreen.GetComponent<Image>().color.a > 0)
+        while (blackScreen.GetComponent<Image>().color.a > fadeTo)
         {
             fadeAmount = objectColor.a - (fadeSpeed * Time.deltaTime);
 
@@ -108,12 +112,12 @@ public class DialogueCollisionChecker : MonoBehaviour
         }
     }
 
-    IEnumerator FadeBlackOut(int fadeSpeed)
+    IEnumerator FadeBlackOut(int fadeSpeed, float fadeTo = 1)
     {
         Color objectColor = blackScreen.GetComponent<Image>().color;
         float fadeAmount;
 
-        while (blackScreen.GetComponent<Image>().color.a < 1)
+        while (blackScreen.GetComponent<Image>().color.a < fadeTo)
         {
             fadeAmount = objectColor.a + (fadeSpeed * Time.deltaTime);
 
