@@ -12,11 +12,13 @@ public class TabletHandler : MonoBehaviour
     private bool pauseInteraction = false;
 
     public Image blackScreen;
+    public RawImage puzzle;
 
     // Start is called before the first frame update
     void Start()
     {
         tablet.transform.localScale = new Vector3(0, 0, 0);
+        puzzle.transform.localScale = new Vector3(0, 0, 0);
     }
 
     void OnTriggerEnter(Collider approachingCollider)
@@ -113,6 +115,7 @@ public class TabletHandler : MonoBehaviour
     {
         yield return new WaitForSeconds(wait);
         tablet.transform.localScale = new Vector3(0, 0, 0);
+        puzzle.transform.localScale = new Vector3(0, 0, 0);
     }
 
     IEnumerator ShowTablet(float wait = 0f)
@@ -120,5 +123,6 @@ public class TabletHandler : MonoBehaviour
         yield return new WaitForSeconds(wait);
 
         tablet.transform.localScale = new Vector3(28.91671f, 1.650508f, 28.91668f);
+        puzzle.transform.localScale = new Vector3(1, 1, 1);
     }
 }

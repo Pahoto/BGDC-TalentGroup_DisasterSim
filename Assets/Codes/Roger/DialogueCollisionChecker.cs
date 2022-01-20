@@ -5,9 +5,11 @@ using UnityEngine.UI;
 
 public class DialogueCollisionChecker : MonoBehaviour
 {
-    private GameObject[] dialogueBoxes;
+    //private GameObject[] dialogueBoxes;
     public GameObject textBox;
     public GameObject textContent;
+
+    public GameObject dialogueKey1;
 
     public Image blackScreen;
     public RawImage theImage;
@@ -16,15 +18,20 @@ public class DialogueCollisionChecker : MonoBehaviour
     private int currentImage;
 
     private int dialogue0;
+    private int dialogue1;
+    private int dialogue2;
+    private int dialogue3;
     private bool dialogue1key;
+    private bool dialogue2key;
+    private bool dialogue3key;
 
     void Awake()
     {
-        dialogueBoxes = GameObject.FindGameObjectsWithTag("Dialogue Trigger");
-        foreach (GameObject dialogueBox in dialogueBoxes)
-        {
-            dialogueBox.transform.localScale = new Vector3(0, 0, 0);
-        }
+        //dialogueBoxes = GameObject.FindGameObjectsWithTag("Dialogue Trigger");
+        //foreach (GameObject dialogueBox in dialogueBoxes)
+        //{
+        //    dialogueBox.transform.localScale = new Vector3(0, 0, 0);
+        //}
 
         StartCoroutine(HideDialogueBox(0f));
     }
@@ -33,15 +40,23 @@ public class DialogueCollisionChecker : MonoBehaviour
     void Start()
     {
         dialogue0 = 0;
+        dialogue1 = 0;
+        dialogue2 = 0;
+        dialogue3 = 0;
         dialogue1key = false;
+        dialogue2key = false;
+        dialogue3key = false;
         currentImage = 0;
 
         theText = textContent.GetComponent<Text>();
         theImage.texture = dialogueImages[currentImage];
 
+        // Player Movement
+        GetComponent<PlayerMovement>().enabled = false;
+
         // For Dialgoue
         StartCoroutine(Timer(2f, 0, 0, "Hey, wake up! You need to go, right?"));
-        StartCoroutine(ShowDialogueBox(2f));
+        StartCoroutine(ShowDialogueBox(3f));
     }
 
     // Update is called once per frame
@@ -49,7 +64,7 @@ public class DialogueCollisionChecker : MonoBehaviour
     {
         if (timerRunning == false && dialogue0 == 1)
         {
-            StartCoroutine(Timer(2f, 0, 2, "5 minutes..."));
+            StartCoroutine(Timer(3f, 0, 2, "5 minutes..."));
         }
         else if (timerRunning == false && dialogue0 == 2)
         {
@@ -66,18 +81,95 @@ public class DialogueCollisionChecker : MonoBehaviour
         }
         else if (timerRunning == false && dialogue0 == 5)
         {
-            StartCoroutine(HideDialogueBox(3f));
+            StartCoroutine(Timer(6f, 0, 2, "Wait, who are you?"));
+        }
+        else if (timerRunning == false && dialogue0 == 6)
+        {
+            StartCoroutine(Timer(3f, 0, 0, "Wait... You donÅft remember anything? Do, you donÅft even remember me, your very-very-very-very precious and lovely robot?"));
+        }
+        else if (timerRunning == false && dialogue0 == 7)
+        {
+            StartCoroutine(Timer(9.5f, 0, 1, "If you donÅft remember anything, then I will teach you something basic. You can walk with [W] [A] [S] and [D]. [W] for moving forward, [S] for moving backward, [A] for moving to the left, and [D] for moving to the right. You can also jump with the [SPACE] button."));
+        }
+        else if (timerRunning == false && dialogue0 == 8)
+        {
+            StartCoroutine(Timer(13f, 0, 0, "Now, try to move!"));
+        }
+        else if (timerRunning == false && dialogue0 == 9)
+        {
+            StartCoroutine(HideDialogueBox(4f));
+            GetComponent<PlayerMovement>().enabled = true;
+            dialogue0++;
+        }
+
+        if(dialogue1key == true && dialogue1 == 1)
+        {
+            StartCoroutine(ShowDialogueBox(0f));
+            StartCoroutine(Timer(0f, 1, 1, "Hmm.. it turns out that you are smart enough."));
+        }
+        else if (timerRunning == false && dialogue1 == 2)
+        {
+            StartCoroutine(Timer(4f, 1, 0, "Now, as I said before, you need to go! Go to your grandmaÅfs house, I will lead you!"));
+        }
+        else if (timerRunning == false && dialogue1 == 3)
+        {
+            StartCoroutine(Timer(6f, 1, 0, "Let's start with getting out of this room first. You can open a door with the [E] button. The door is there beside the curtain."));
+        }
+        else if (timerRunning == false && dialogue1 == 4)
+        {
+            StartCoroutine(HideDialogueBox(8f));
+            dialogue1++;
+        }
+
+        if(dialogue2key == true && dialogue2 == 1 && Input.GetKeyDown(KeyCode.E))
+        {
+            StartCoroutine(ShowDialogueBox(0f));
+            StartCoroutine(Timer(0f, 2, 2, "The door doesnÅft open!  WhereÅfs the key?"));
+        }
+        else if (timerRunning == false && dialogue2 == 2)
+        {
+            StartCoroutine(Timer(4f, 2, 0, "How do I know, you donÅft remember that you have a habit of keeping your key in a different locker? Now you donÅft remember where you put the key-"));
+        }
+        else if (timerRunning == false && dialogue2 == 3)
+        {
+            StartCoroutine(Timer(8.5f, 2, 2, "Sttt.. youÅfre so noisy."));
+        }
+        else if (timerRunning == false && dialogue2 == 4)
+        {
+            StartCoroutine(Timer(3f, 2, 0, "WHAT!?"));
+        }
+        else if (timerRunning == false && dialogue2 == 5)
+        {
+            StartCoroutine(Timer(2f, 2, 1, "Alright, I will shut my mouth up. You better find the key quickly."));
+        }
+        else if (timerRunning == false && dialogue2 == 6)
+        {
+            StartCoroutine(HideDialogueBox(6f));
+            dialogue2++;
         }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "Dialogue Collider 1")
+        if (other.gameObject.name == "Dialogue Collider 1" && dialogue1 == 0)
         {
-            textBox.transform.localScale = new Vector3(1, 1, 1);
-            textContent.transform.localScale = new Vector3(1, 1, 1);
-
             dialogue1key = true;
+            dialogue1 = 1;
+        }
+
+        Debug.Log(other.gameObject.name);
+
+        if (other.gameObject.name == "Dialogue Collider 2" && dialogue2 == 0)
+        {
+            dialogue2key = true;
+            dialogue2 = 1;
+            Debug.Log(dialogue2);
+        }
+
+        if (other.gameObject.name == "Dialogue Collider 3" && dialogue2 == 8) // Inget buat jadiin dialogue2 8 habis ketemu ngebuka pintu
+        {
+            dialogue3key = true;
+            dialogue3 = 1;
         }
     }
 
@@ -88,6 +180,8 @@ public class DialogueCollisionChecker : MonoBehaviour
         timerRunning = true;
         yield return new WaitForSeconds(time);
         if (dialogueNumber == 0) dialogue0++;
+        else if (dialogueNumber == 1) dialogue1++;
+        else if (dialogueNumber == 2) dialogue2++;
         timerRunning = false;
         if (changeImage != -1)
         {
