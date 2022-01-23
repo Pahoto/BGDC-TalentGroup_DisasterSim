@@ -2,9 +2,12 @@ using UnityEngine; // Namespace Utama.
 public class MouseLook : MonoBehaviour
 {
     // FPS Player (controller) mewariskan body dan mainCamera.
-    float mouseX = 0f, mouseY = 0f;
+    float mouseX = 0f;
+    float mouseY = 0f;
     // Pertambahan sudut setiap pergeseran Mouse.
-    public float mouseXSensi = 120f, mouseYSensi = 240f, xRotation = 0f;
+    public float mouseXSensi = 120f;
+    public float mouseYSensi = 240f;
+    public float xRotation = 0f;
     // mouSensi: Sensitivitas pergeseran Mouse.
     // xRotation:  Besar sudut rotasi vertikal.
     public Transform controller = null; // Komponen FPS Player.

@@ -10,6 +10,7 @@ public class DialogueCollisionChecker : MonoBehaviour
     public GameObject textContent;
 
     public GameObject dialogueKey1;
+    public Crosshair crosshair = null;
 
     public Image blackScreen;
     public RawImage theImage;
@@ -57,6 +58,8 @@ public class DialogueCollisionChecker : MonoBehaviour
         // For Dialgoue
         StartCoroutine(Timer(2f, 0, 0, "Hey, wake up! You need to go, right?"));
         StartCoroutine(ShowDialogueBox(3f));
+
+        crosshair = FindObjectOfType<Crosshair>();
     }
 
     // Update is called once per frame
@@ -121,31 +124,34 @@ public class DialogueCollisionChecker : MonoBehaviour
             dialogue1++;
         }
 
-        if(dialogue2key == true && dialogue2 == 1 && Input.GetKeyDown(KeyCode.E))
+        if (!crosshair.isCardObtained)
         {
-            StartCoroutine(ShowDialogueBox(0f));
-            StartCoroutine(Timer(0f, 2, 2, "The door doesnÅft open!  WhereÅfs the key?"));
-        }
-        else if (timerRunning == false && dialogue2 == 2)
-        {
-            StartCoroutine(Timer(4f, 2, 0, "How do I know, you donÅft remember that you have a habit of keeping your key in a different locker? Now you donÅft remember where you put the key-"));
-        }
-        else if (timerRunning == false && dialogue2 == 3)
-        {
-            StartCoroutine(Timer(8.5f, 2, 2, "Sttt.. youÅfre so noisy."));
-        }
-        else if (timerRunning == false && dialogue2 == 4)
-        {
-            StartCoroutine(Timer(3f, 2, 0, "WHAT!?"));
-        }
-        else if (timerRunning == false && dialogue2 == 5)
-        {
-            StartCoroutine(Timer(2f, 2, 1, "Alright, I will shut my mouth up. You better find the key quickly."));
-        }
-        else if (timerRunning == false && dialogue2 == 6)
-        {
-            StartCoroutine(HideDialogueBox(6f));
-            dialogue2++;
+            if (dialogue2key == true && dialogue2 == 1 && Input.GetKeyDown(KeyCode.E))
+            {
+                StartCoroutine(ShowDialogueBox(0f));
+                StartCoroutine(Timer(0f, 2, 2, "The door doesnÅft open!  WhereÅfs the key?"));
+            }
+            else if (timerRunning == false && dialogue2 == 2)
+            {
+                StartCoroutine(Timer(4f, 2, 0, "How do I know, you donÅft remember that you have a habit of keeping your key in a different locker? Now you donÅft remember where you put the key-"));
+            }
+            else if (timerRunning == false && dialogue2 == 3)
+            {
+                StartCoroutine(Timer(8.5f, 2, 2, "Sttt.. youÅfre so noisy."));
+            }
+            else if (timerRunning == false && dialogue2 == 4)
+            {
+                StartCoroutine(Timer(3f, 2, 0, "WHAT!?"));
+            }
+            else if (timerRunning == false && dialogue2 == 5)
+            {
+                StartCoroutine(Timer(2f, 2, 1, "Alright, I will shut my mouth up. You better find the key quickly."));
+            }
+            else if (timerRunning == false && dialogue2 == 6)
+            {
+                StartCoroutine(HideDialogueBox(6f));
+                dialogue2++;
+            }
         }
     }
 

@@ -3,7 +3,9 @@ public class AutoLiftDoor : MonoBehaviour
 {
     public GameObject door = null; // Referensi objek pintu.
     public bool doorTriggered = false; // Status sensor.
-    float doorYPos = 0f, doorYBottomEnd = 0f, doorYTopEnd = 0f;
+    float doorYPos = 0f;
+    float doorYBottomEnd = 0f;
+    float doorYTopEnd = 0f;
     void Start()
     {
         doorYPos = door.transform.position.y;

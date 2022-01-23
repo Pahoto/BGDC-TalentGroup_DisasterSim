@@ -3,7 +3,9 @@ public class AutoSlideDoor : MonoBehaviour
 {
     public GameObject door = null; // Referensi objek pintu.
     public bool doorTriggered = false; // Status sensor.
-    float doorZPos = 0f, doorZLeftEnd = 0f, doorZRightEnd = 0f;
+    float doorZPos = 0f;
+    float doorZLeftEnd = 0f;
+    float doorZRightEnd = 0f;
     void Start()
     {
         doorZPos = door.transform.position.z;

@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 namespace StageSystem
 {
@@ -8,7 +7,7 @@ namespace StageSystem
         bool stageCompleted = false;
         float loadingTime = 15f;
         float restartTime = 5f;
-        string stage1Name = "backupv10-L2-Stage1";
+        string stage1Name = "L2-Stage1";
         public SceneTransition sceneTransition = null;
         void Start()
         {

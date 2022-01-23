@@ -1,21 +1,29 @@
 using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
-    float x = 0f, z = 0f;
+    float x = 0f;
+    float z = 0f;
     Vector3 xZDirection = new Vector3(0f, 0f, 0f);
     CharacterController controller = null;
-    public float xZSpeed = 4f, gravity = -10f, groundDistance = 0.06f, jumpHeight = 1.6f, roofDistance = 0.1f;
+    public float xZSpeed = 4f;
+    public float gravity = -10f;
+    public float groundDistance = 0.06f;
+    public float jumpHeight = 1.6f;
+    public float roofDistance = 0.1f;
     public Vector3 yDirection = new Vector3(0f, 0f, 0f);
-    public bool isGrounded, isRoofed;
-    public Transform groundChecker = null, roofChecker = null;
-    public LayerMask groundMask, roofMask;
+    public bool isGrounded = false;
+    public bool isRoofed = false;
+    public Transform groundChecker = null;
+    public Transform roofChecker = null;
+    public LayerMask groundMask;
+    public LayerMask roofMask;
 
     // For Pressure Plate
-    private GameObject[] pressurePlates;
-    GameObject obstacle;
+    GameObject[] pressurePlates;
+    GameObject obstacle = null;
 
     public bool pressed = false;
-    private bool allPressed = false;
+    bool allPressed = false;
 
     void Start()
     {

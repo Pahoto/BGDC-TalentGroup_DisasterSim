@@ -2,8 +2,12 @@ using System.Collections; // Untuk Coroutine.
 using UnityEngine;
 public class ClickToOpenDoor : MonoBehaviour
 {
-    public Animator doorAnim = null, sensorAnim = null; // Membuka-tutup pintu dengan animasi.
-    public bool doorTriggered = false, openingDoor = false, pauseInteraction = false;
+    public Animator doorAnim = null;
+    // Membuka-tutup pintu dengan animasi.
+    public Animator sensorAnim = null;
+    public bool doorTriggered = false;
+    public bool openingDoor = false;
+    public bool pauseInteraction = false;
     void OnTriggerEnter(Collider approachingCollider)
     {
         if (approachingCollider.name == "Crosshair") doorTriggered = true;
