@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 using System.Collections;
 namespace KeySystem
 {
@@ -10,6 +11,9 @@ namespace KeySystem
         public bool openingLocker = false;
         public bool pauseInteraction = false;
         public Crosshair crosshair = null;
+
+        public AudioSource openSound = null;
+        public AudioSource closeSound = null;
 
         void Start()
         {
@@ -46,6 +50,7 @@ namespace KeySystem
                 {
                     lockerAnim.Play("Locker Open", 0, 0f);
                     sensorAnim.Play("Locker Open", 0, 0f);
+                    openSound.Play();
                     openingLocker = true;
                     StartCoroutine(PauseInteraction());
                 }
@@ -53,6 +58,7 @@ namespace KeySystem
                 {
                     lockerAnim.Play("Locker Close", 0, 0f);
                     sensorAnim.Play("Locker Close", 0, 0f);
+                    closeSound.Play();
                     openingLocker = false;
                     StartCoroutine(PauseInteraction());
                 }

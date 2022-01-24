@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 public class AutoSlideDoor : MonoBehaviour
 {
     public GameObject door = null; // Referensi objek pintu.
@@ -6,6 +7,9 @@ public class AutoSlideDoor : MonoBehaviour
     float doorZPos = 0f;
     float doorZLeftEnd = 0f;
     float doorZRightEnd = 0f;
+    public AudioSource openSound = null;
+    public AudioSource closeSound = null;
+    bool startMoving = false;
     void Start()
     {
         doorZPos = door.transform.position.z;
@@ -28,9 +32,30 @@ public class AutoSlideDoor : MonoBehaviour
         doorZPos = door.transform.position.z;
         // Pergeseran melalui sumbu X objek pintu.
         if (doorTriggered && doorZPos > doorZRightEnd) // Pintu terbuka.
-            door.transform.Translate(-1.5f * Vector3.right * Time.deltaTime);
+        {
+            if (!startMoving)
+            {
+                openSound.Play();
+                closeSound.Stop();
+                startMoving = true;
+            }
+            door.transform.Translate(-Vector3.right * Time.deltaTime);
+        }
         // Vector3.right = (1, 0, 0).
         else if (!doorTriggered && doorZPos < doorZLeftEnd) // Pintu tertutup.
-            door.transform.Translate(1.5f * Vector3.right * Time.deltaTime);
+        {
+            if (startMoving)
+            {
+                closeSound.Play();
+                openSound.Stop();
+                startMoving = false;
+            }
+            door.transform.Translate(Vector3.right * Time.deltaTime);
+        }
+        else
+        {
+            openSound.Stop();
+            closeSound.Stop();
+        }
     }
 }
