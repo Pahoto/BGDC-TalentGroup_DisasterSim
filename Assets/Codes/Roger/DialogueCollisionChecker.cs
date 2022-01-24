@@ -100,7 +100,6 @@ public class DialogueCollisionChecker : MonoBehaviour
         }
         else if (timerRunning == false && dialogue0 == 9)
         {
-            StartCoroutine(HideDialogueBox(4f));
             GetComponent<PlayerMovement>().enabled = true;
             dialogue0++;
         }
@@ -137,21 +136,45 @@ public class DialogueCollisionChecker : MonoBehaviour
             }
             else if (timerRunning == false && dialogue2 == 3)
             {
-                StartCoroutine(Timer(8.5f, 2, 2, "Sttt.. youÅfre so noisy."));
+                StartCoroutine(Timer(7.5f, 2, 2, "Sttt.. youÅfre so noisy."));
             }
             else if (timerRunning == false && dialogue2 == 4)
             {
-                StartCoroutine(Timer(3f, 2, 0, "WHAT!?"));
+                StartCoroutine(Timer(2.5f, 2, 0, "WHAT!?"));
             }
             else if (timerRunning == false && dialogue2 == 5)
             {
-                StartCoroutine(Timer(2f, 2, 1, "Alright, I will shut my mouth up. You better find the key quickly."));
+                StartCoroutine(Timer(1f, 2, 1, "Alright, I will shut my mouth up. You better find the key quickly. You can interact with it or any items with the [F] button."));
             }
             else if (timerRunning == false && dialogue2 == 6)
             {
-                StartCoroutine(HideDialogueBox(6f));
+                StartCoroutine(HideDialogueBox(8.5f));
                 dialogue2++;
             }
+        }
+
+        if (crosshair.isCardObtained && dialogue3 == 0 && dialogue3key == false)
+        {
+            dialogue3key = true;
+        }
+
+        if (timerRunning == false && dialogue3key == true && dialogue3 == 0)
+        {
+            StartCoroutine(ShowDialogueBox(0f));
+            StartCoroutine(Timer(0f, 3, 2, "Is this the key?"));
+        }
+        else if (timerRunning == false && dialogue3 == 1)
+        {
+            StartCoroutine(Timer(1.75f, 3, 1, "Wow, you actually found the key!"));
+        }
+        else if (timerRunning == false && dialogue3 == 2)
+        {
+            StartCoroutine(Timer(2f, 3, 1, "Now, letÅfs go out!"));
+        }
+        else if (timerRunning == false && dialogue3 == 3)
+        {
+            StartCoroutine(HideDialogueBox(2f));
+            dialogue3++;
         }
     }
 
@@ -163,19 +186,18 @@ public class DialogueCollisionChecker : MonoBehaviour
             dialogue1 = 1;
         }
 
-        Debug.Log(other.gameObject.name);
-
         if (other.gameObject.name == "Dialogue Collider 2" && dialogue2 == 0)
         {
             dialogue2key = true;
             dialogue2 = 1;
-            Debug.Log(dialogue2);
         }
+    }
 
-        if (other.gameObject.name == "Dialogue Collider 3" && dialogue2 == 8) // Inget buat jadiin dialogue2 8 habis ketemu ngebuka pintu
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.name == "Dialogue Collider 2" && dialogue2 == 1)
         {
-            dialogue3key = true;
-            dialogue3 = 1;
+            dialogue2 = 0;
         }
     }
 
@@ -188,6 +210,7 @@ public class DialogueCollisionChecker : MonoBehaviour
         if (dialogueNumber == 0) dialogue0++;
         else if (dialogueNumber == 1) dialogue1++;
         else if (dialogueNumber == 2) dialogue2++;
+        else if (dialogueNumber == 3) dialogue3++;
         timerRunning = false;
         if (changeImage != -1)
         {

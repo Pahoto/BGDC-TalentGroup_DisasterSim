@@ -7,6 +7,8 @@ public class TabletHandler : MonoBehaviour
 {
     public Crosshair crosshair = null;
     public GameObject tablet;
+    public GameObject player;
+
     private bool tabletTriggered = false;
     private bool takeTablet = false;
     private bool pauseInteraction = false;
@@ -55,6 +57,7 @@ public class TabletHandler : MonoBehaviour
             StartCoroutine(HideCrosshiar());
             StartCoroutine(PauseInteraction());
             takeTablet = true;
+            player.GetComponent<PlayerMovement>().enabled = false;
         }
         if (takeTablet && Input.GetKeyDown(KeyCode.F) && pauseInteraction == false)
         {
@@ -62,6 +65,7 @@ public class TabletHandler : MonoBehaviour
             StartCoroutine(ShowCrosshiar());
             StartCoroutine(PauseInteraction());
             takeTablet = false;
+            player.GetComponent<PlayerMovement>().enabled = true;
         }
     }
 
