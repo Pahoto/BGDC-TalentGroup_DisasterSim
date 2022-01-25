@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Audio;
 using System.Collections;
 namespace KeySystem
 {
@@ -10,11 +9,11 @@ namespace KeySystem
         public bool lockerTriggered = false;
         public bool openingLocker = false;
         public bool pauseInteraction = false;
+        // Untuk arahin loker yang mau dibuka:
         public Crosshair crosshair = null;
-
+        // Untuk audio / sound:
         public AudioSource openSound = null;
         public AudioSource closeSound = null;
-
         void Start()
         {
             crosshair = FindObjectOfType<Crosshair>();
