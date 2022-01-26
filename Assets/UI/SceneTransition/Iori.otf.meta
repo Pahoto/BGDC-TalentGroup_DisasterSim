@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 5c1bbc7aa2296f14995828b5917280a6
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Iori
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 99ce21d891d737d46a5217083db2a264, type: 3}
+  - {fileID: 12800000, guid: 7b8087332dc30784db9d5dd6c3479a5f, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

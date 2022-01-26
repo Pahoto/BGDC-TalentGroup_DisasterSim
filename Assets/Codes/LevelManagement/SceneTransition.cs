@@ -4,7 +4,7 @@ public class SceneTransition : MonoBehaviour
 {
     public StageManager stageManager = null;
     public GameObject loading = null;
-    public Animator loadTextAnim = null;
+    public Animator loadTMP = null;
     
     void Start()
     {
@@ -18,7 +18,7 @@ public class SceneTransition : MonoBehaviour
     public void LoadingScreen()
     {
         loading.SetActive(true);
-        loadTextAnim.Play("Load Text Anim", 0, 0.1f);
+        loadTMP.Play("Load TMP", 0, 0.1f);
     }
     void OnTriggerEnter(Collider other)
     {
