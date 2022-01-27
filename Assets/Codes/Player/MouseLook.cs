@@ -11,11 +11,6 @@ public class MouseLook : MonoBehaviour
     // mouSensi: Sensitivitas pergeseran Mouse.
     // xRotation:  Besar sudut rotasi vertikal.
     public Transform controller = null; // Komponen FPS Player.
-    void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        // Tampilan kursor dimatikan selama bermain.
-    }
     void Update()
     {
         // Pergerakan Mouse Horizontal:

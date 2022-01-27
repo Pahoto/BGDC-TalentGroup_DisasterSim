@@ -13,8 +13,8 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 yDirection = new Vector3(0f, 0f, 0f);
     public bool isGrounded = false;
     public bool isRoofed = false;
-    public Transform groundChecker = null;
-    public Transform roofChecker = null;
+    public Transform groundChecker;
+    public Transform roofChecker;
     public LayerMask groundMask;
     public LayerMask roofMask;
 
@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        controller = gameObject.GetComponent<CharacterController>();
+        controller = GetComponentInParent<CharacterController>();
 
         // For Pressure Plate
         pressurePlates = GameObject.FindGameObjectsWithTag("Pressure Plate");

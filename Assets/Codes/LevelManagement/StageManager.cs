@@ -7,19 +7,26 @@ namespace StageSystem
         bool stageCompleted = false;
         float loadingTime = 15f;
         float restartTime = 5f;
-        string stage1Name = "L2-Stage1";
+        int currStageIdx = 0;
+        int nextStageIdx = 0;
         public SceneTransition sceneTransition = null;
         void Start()
         {
             sceneTransition = FindObjectOfType<SceneTransition>();
+            currStageIdx = SceneManager.GetActiveScene().buildIndex;
+            nextStageIdx = SceneManager.GetActiveScene().buildIndex + 1;
         }
-        void LoadStage()
+        void NextStage()
         {
-            SceneManager.LoadScene(stage1Name);
+            SceneManager.LoadScene(nextStageIdx);
+        }
+        void ReloadStage()
+        {
+            SceneManager.LoadScene(currStageIdx);
         }
         public void RestartStage()
         {
-            Invoke("LoadStage", restartTime);
+            Invoke("ReloadStage", restartTime);
         }
         public void EndStage()
         {
@@ -27,7 +34,7 @@ namespace StageSystem
             {
                 stageCompleted = true;
                 sceneTransition.LoadingScreen();
-                Invoke("LoadStage", loadingTime);
+                Invoke("NextStage", loadingTime);
             }
         }
     }

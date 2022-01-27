@@ -26,22 +26,30 @@ public class AutoSlideDoor : MonoBehaviour
         if (leavingCollider.name == "FPS Player") doorTriggered = false;
         // Jika player menjauh, maka sensor terhenti.
     }
+    void PlayOpenSound()
+    {
+        openSound.time = doorZLeftEnd - doorZPos;
+        openSound.Play();
+    }
+    void PlayCloseSound()
+    {
+        closeSound.time = doorZPos - doorZRightEnd;
+        closeSound.Play();
+    }
     void FixedUpdate()
     {
         doorZPos = door.transform.position.z;
         // Pergeseran melalui sumbu X objek pintu.
         if (doorTriggered && doorZPos > doorZRightEnd) // Pintu terbuka.
         {
-            openSound.time = doorZLeftEnd - doorZPos;
-            openSound.Play();
+            PlayOpenSound();
             closeSound.Stop();
             door.transform.Translate(-Vector3.right * Time.deltaTime);
         }
         // Vector3.right = (1, 0, 0).
         else if (!doorTriggered && doorZPos < doorZLeftEnd) // Pintu tertutup.
         {
-            closeSound.time = doorZPos - doorZRightEnd;
-            closeSound.Play();
+            PlayCloseSound();
             openSound.Stop();
             door.transform.Translate(Vector3.right * Time.deltaTime);
         }
