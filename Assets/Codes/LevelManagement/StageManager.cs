@@ -4,9 +4,9 @@ namespace StageSystem
 {
     public class StageManager : MonoBehaviour
     {
-        bool stageCompleted = false;
-        float loadingTime = 15f;
+        public float loadingTime = 15f;
         float restartTime = 5f;
+        int menuIdx = 0;
         int currStageIdx = 0;
         int nextStageIdx = 0;
         public SceneTransition sceneTransition = null;
@@ -14,11 +14,16 @@ namespace StageSystem
         {
             sceneTransition = FindObjectOfType<SceneTransition>();
             currStageIdx = SceneManager.GetActiveScene().buildIndex;
-            nextStageIdx = SceneManager.GetActiveScene().buildIndex + 1;
+            nextStageIdx = currStageIdx + 1;
         }
         void NextStage()
         {
             SceneManager.LoadScene(nextStageIdx);
+        }
+        public void EndStage()
+        {
+            sceneTransition.LoadingScreen();
+            Invoke("NextStage", loadingTime);
         }
         void ReloadStage()
         {
@@ -28,14 +33,14 @@ namespace StageSystem
         {
             Invoke("ReloadStage", restartTime);
         }
-        public void EndStage()
+        void BackToMenu()
         {
-            if (!stageCompleted)
-            {
-                stageCompleted = true;
-                sceneTransition.LoadingScreen();
-                Invoke("NextStage", loadingTime);
-            }
+            SceneManager.LoadScene(menuIdx);
+        }
+        public void ExitStage()
+        {
+            sceneTransition.LoadingScreen();
+            Invoke("BackToMenu", loadingTime);
         }
     }
 }

@@ -13,8 +13,8 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 yDirection = new Vector3(0f, 0f, 0f);
     public bool isGrounded = false;
     public bool isRoofed = false;
-    public Transform groundChecker;
-    public Transform roofChecker;
+    public Transform groundChecker = null;
+    public Transform roofChecker = null;
     public LayerMask groundMask;
     public LayerMask roofMask;
 

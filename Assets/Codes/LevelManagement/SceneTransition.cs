@@ -11,16 +11,15 @@ public class SceneTransition : MonoBehaviour
         stageManager = FindObjectOfType<StageManager>();
         loading.SetActive(false);
     }
-    public void Call()
-    {
-        stageManager.EndStage();
-    }
     public void LoadingScreen()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        // Tampilan kursor dimatikan selama bermain.
         loading.SetActive(true);
         loadTMP.Play("Load TMP", 0, 0.1f);
+    }
+    void Call()
+    {
+        stageManager.EndStage();
     }
     void OnTriggerEnter(Collider other)
     {
