@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpHeight = 1.6f;
     public float roofDistance = 0.1f;
     public Vector3 yDirection = new Vector3(0f, 0f, 0f);
+
     public bool isGrounded = false;
     public bool isRoofed = false;
     public Transform groundChecker = null;
@@ -25,6 +26,13 @@ public class PlayerMovement : MonoBehaviour
     public bool pressed = false;
     bool allPressed = false;
 
+    public AudioSource walkSound = null;
+    public AudioSource jumpSound = null;
+    public AudioSource landSound = null;
+    bool isWalking = false;
+    bool isPressed = false;
+    bool isJump = false;
+
     void Start()
     {
         controller = GetComponentInParent<CharacterController>();
@@ -33,17 +41,77 @@ public class PlayerMovement : MonoBehaviour
         pressurePlates = GameObject.FindGameObjectsWithTag("Pressure Plate");
 
         obstacle = GameObject.Find("LALALA");
+
+        walkSound = this.GetComponent<AudioSource>();
     }
-    void Update()
+    void CheckWalkButtonPressed()
     {
-        if (isGrounded && yDirection.y < 0f) yDirection.y = 0f;
+        if (
+            (x >= -1f && x < 0f) ||
+            (x > 0f && x <= 1f) ||
+            (z >= -1f && z < 0f) ||
+            (z > 0f && z <= 1f)
+        ) isPressed = true;
+        else isPressed = false;
+    }
+    void SetWalk()
+    {
         x = Input.GetAxis("Horizontal");
         z = Input.GetAxis("Vertical");
         xZDirection = transform.right * x + transform.forward * z;
         controller.Move(xZDirection * xZSpeed * Time.deltaTime);
-        if (isGrounded && Input.GetKeyDown(KeyCode.Space)) yDirection.y = Mathf.Sqrt(-2f * gravity * jumpHeight);
+    }
+    void Walk()
+    {
+        SetWalk();
+        CheckWalkButtonPressed();
+        if (!isWalking && isPressed)
+        {
+            walkSound.Play();
+            isWalking = true;
+        }
+        else if (!isPressed)
+        {
+            walkSound.Stop();
+            isWalking = false;
+        }
+    }
+    void SetJump()
+    {
         yDirection.y += gravity * Time.deltaTime;
         controller.Move(yDirection * Time.deltaTime);
+    }
+    void Jump()
+    {
+        if (isGrounded)
+        {
+            if (yDirection.y < 0f)
+            {
+                yDirection.y = 0f;
+                if (isJump)
+                {
+                    landSound.Play();
+                    walkSound.Play();
+                    isJump = false;
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                yDirection.y = Mathf.Sqrt(-2f * gravity * jumpHeight);
+                if (!isJump)
+                {
+                    jumpSound.Play();
+                    walkSound.Stop();
+                    isJump = true;
+                }
+            }
+        }
+        SetJump();
+    }
+    void Update()
+    {
+        Walk();
+        if (!isRoofed) Jump();
     }
     void FixedUpdate()
     {

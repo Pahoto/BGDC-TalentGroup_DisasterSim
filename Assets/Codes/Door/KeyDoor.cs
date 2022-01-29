@@ -12,9 +12,13 @@ public class KeyDoor : MonoBehaviour
     public Crosshair crosshair = null;
     public bool unlockDoor = false;
 
+    public AudioSource openSound = null;
+    public AudioSource closeSound = null;
+
     void Start()
     {
         crosshair = FindObjectOfType<Crosshair>();
+        closeSound = GetComponentInParent<AudioSource>();
     }
 
     void OnTriggerEnter(Collider approachingCollider)
@@ -45,6 +49,7 @@ public class KeyDoor : MonoBehaviour
                 {
                     doorAnim.Play("New Door Open", 0, 0f);
                     sensorAnim.Play("New Door Open", 0, 0f);
+                    openSound.Play();
                     openingDoor = true;
                     StartCoroutine(PauseInteraction());
                 }
@@ -52,6 +57,7 @@ public class KeyDoor : MonoBehaviour
                 {
                     doorAnim.Play("New Door Close", 0, 0f);
                     sensorAnim.Play("New Door Close", 0, 0f);
+                    closeSound.Play();
                     openingDoor = false;
                     StartCoroutine(PauseInteraction());
                 }

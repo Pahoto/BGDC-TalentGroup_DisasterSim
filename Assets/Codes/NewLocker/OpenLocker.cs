@@ -17,6 +17,7 @@ namespace KeySystem
         void Start()
         {
             crosshair = FindObjectOfType<Crosshair>();
+            closeSound = GetComponentInParent<AudioSource>();
         }
 
         void OnTriggerEnter(Collider approachingCollider)

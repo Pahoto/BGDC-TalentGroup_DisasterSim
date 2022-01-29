@@ -5,6 +5,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseUI = null;
     bool isGamePaused = false;
     public StageManager stageManager = null;
+    public AudioSource rainSound = null;
     void Start()
     {
         pauseUI.SetActive(false);
@@ -14,6 +15,7 @@ public class PauseMenu : MonoBehaviour
     public void PauseGame()
     {
         Time.timeScale = 0f;
+        rainSound.Stop();
         isGamePaused = true;
         pauseUI.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
@@ -23,6 +25,7 @@ public class PauseMenu : MonoBehaviour
         pauseUI.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1f;
+        rainSound.Play();
         isGamePaused = false;
     }
     public void QuitGame()
