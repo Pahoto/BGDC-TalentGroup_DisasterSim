@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Audio;
 using StageSystem;
 public class PauseMenu : MonoBehaviour
 {
@@ -6,11 +8,22 @@ public class PauseMenu : MonoBehaviour
     bool isGamePaused = false;
     public StageManager stageManager = null;
     public AudioSource rainSound = null;
+    public AudioMixer audioMixer = null;
+    public Slider volumeSlider = null;
     void Start()
     {
         pauseUI.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         stageManager = FindObjectOfType<StageManager>();
+        volumeSlider.minValue = -80f;
+        volumeSlider.maxValue = 20f;
+        volumeSlider.value = 0f;
+    }
+    public void VolumeSlider(float sliderVolume)
+    {
+        // Mengatur nilai volume Master pada AudioMixer.
+        audioMixer.SetFloat("masterVolume", sliderVolume);
+        // Agar sesuai dengan (pergeseran) nilai Slider.
     }
     public void PauseGame()
     {
