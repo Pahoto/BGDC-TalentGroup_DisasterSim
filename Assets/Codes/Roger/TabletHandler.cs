@@ -16,11 +16,17 @@ public class TabletHandler : MonoBehaviour
     public Image blackScreen;
     public RawImage puzzle;
 
+    public AudioSource walkSound = null;
+    public AudioSource jumpSound = null;
+    public AudioSource landSound = null;
+    public PlayerMovement playerMovement = null;
+
     // Start is called before the first frame update
     void Start()
     {
         tablet.transform.localScale = new Vector3(0, 0, 0);
         puzzle.transform.localScale = new Vector3(0, 0, 0);
+        playerMovement = FindObjectOfType<PlayerMovement>();
     }
 
     void OnTriggerEnter(Collider approachingCollider)
@@ -48,6 +54,13 @@ public class TabletHandler : MonoBehaviour
         pauseInteraction = false;
     }
 
+    void DisableMovementSound()
+    {
+        walkSound.Stop();
+        jumpSound.Stop();
+        landSound.Stop();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -57,6 +70,7 @@ public class TabletHandler : MonoBehaviour
             StartCoroutine(HideCrosshiar());
             StartCoroutine(PauseInteraction());
             takeTablet = true;
+            DisableMovementSound();
             player.GetComponent<PlayerMovement>().enabled = false;
         }
         if (takeTablet && Input.GetKeyDown(KeyCode.F) && pauseInteraction == false)
@@ -65,6 +79,8 @@ public class TabletHandler : MonoBehaviour
             StartCoroutine(ShowCrosshiar());
             StartCoroutine(PauseInteraction());
             takeTablet = false;
+            if (playerMovement.isPressed) walkSound.Play();
+            else walkSound.Stop();
             player.GetComponent<PlayerMovement>().enabled = true;
         }
     }

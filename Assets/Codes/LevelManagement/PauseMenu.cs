@@ -17,12 +17,11 @@ public class PauseMenu : MonoBehaviour
         stageManager = FindObjectOfType<StageManager>();
         volumeSlider.minValue = -80f;
         volumeSlider.maxValue = 20f;
-        volumeSlider.value = 0f;
     }
-    public void VolumeSlider(float sliderVolume)
+    public void VolumeSlider(float sliderValue)
     {
         // Mengatur nilai volume Master pada AudioMixer.
-        audioMixer.SetFloat("masterVolume", sliderVolume);
+        audioMixer.SetFloat("masterVolume", sliderValue);
         // Agar sesuai dengan (pergeseran) nilai Slider.
     }
     public void PauseGame()

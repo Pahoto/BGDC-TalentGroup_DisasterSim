@@ -33,14 +33,9 @@ namespace StageSystem
         {
             Invoke("ReloadStage", restartTime);
         }
-        void BackToMenu()
-        {
-            SceneManager.LoadScene(menuIdx);
-        }
         public void ExitStage()
         {
-            sceneTransition.LoadingScreen();
-            Invoke("BackToMenu", loadingTime);
+            SceneManager.LoadScene(menuIdx);
         }
     }
 }

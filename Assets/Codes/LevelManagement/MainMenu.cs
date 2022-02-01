@@ -11,10 +11,10 @@ public class MainMenu : MonoBehaviour
         sceneTransition.loading.SetActive(false);
         menuContent.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
-        stageManager = FindObjectOfType<StageManager>();
     }
     void Start()
     {
+        stageManager = FindObjectOfType<StageManager>();
         sceneTransition = FindObjectOfType<SceneTransition>();
         menuContent.SetActive(false);
     }

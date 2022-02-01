@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource jumpSound = null;
     public AudioSource landSound = null;
     bool isWalking = false;
-    bool isPressed = false;
+    public bool isPressed = false;
     bool isJump = false;
 
     void Start()
@@ -98,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 yDirection.y = Mathf.Sqrt(-2f * gravity * jumpHeight);
-                if (!isJump)
+                if (!isJump && !isRoofed)
                 {
                     jumpSound.Play();
                     walkSound.Stop();
@@ -111,7 +111,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Walk();
-        if (!isRoofed) Jump();
+        Jump();
     }
     void FixedUpdate()
     {
