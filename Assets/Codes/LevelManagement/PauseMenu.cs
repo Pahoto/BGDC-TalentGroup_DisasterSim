@@ -10,19 +10,26 @@ public class PauseMenu : MonoBehaviour
     public AudioSource rainSound = null;
     public AudioMixer audioMixer = null;
     public Slider volumeSlider = null;
-    void Start()
+    void SetVolSlider()
     {
-        pauseUI.SetActive(false);
-        Cursor.lockState = CursorLockMode.Locked;
-        stageManager = FindObjectOfType<StageManager>();
+        volumeSlider.value = 0f;
         volumeSlider.minValue = -80f;
         volumeSlider.maxValue = 20f;
+        volumeSlider.value = PlayerPrefs.GetFloat("saveSliderValue");
+    }
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        stageManager = FindObjectOfType<StageManager>();
+        SetVolSlider();
+        pauseUI.SetActive(false);
     }
     public void VolumeSlider(float sliderValue)
     {
         // Mengatur nilai volume Master pada AudioMixer.
         audioMixer.SetFloat("masterVolume", sliderValue);
         // Agar sesuai dengan (pergeseran) nilai Slider.
+        PlayerPrefs.SetFloat("saveSliderValue1", sliderValue);
     }
     public void PauseGame()
     {
