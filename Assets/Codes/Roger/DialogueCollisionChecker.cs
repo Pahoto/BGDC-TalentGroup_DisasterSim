@@ -71,7 +71,7 @@ public class DialogueCollisionChecker : MonoBehaviour
         }
         else if (timerRunning == false && dialogue0 == 2)
         {
-            StartCoroutine(Timer(2.5f, 0, 0, "What? No, you can't, you have to go now!"));
+            StartCoroutine(Timer(2.5f, 0, 0, "What? No, you can not, you have to go now!"));
         }
         else if (timerRunning == false && dialogue0 == 3)
         {
@@ -80,7 +80,7 @@ public class DialogueCollisionChecker : MonoBehaviour
         }
         else if (timerRunning == false && dialogue0 == 4)
         {
-            StartCoroutine(Timer(3f, 0, 0, "Where are we going...? What!? DonÅft you remember? WerenÅft you the one who told me to prepare for today? What has happened to you?"));
+            StartCoroutine(Timer(3f, 0, 0, "Where are we going...? What!? DonÅft you remember? Were not you the one who told me to prepare for today? What has happened to you?"));
         }
         else if (timerRunning == false && dialogue0 == 5)
         {
@@ -88,11 +88,11 @@ public class DialogueCollisionChecker : MonoBehaviour
         }
         else if (timerRunning == false && dialogue0 == 6)
         {
-            StartCoroutine(Timer(3f, 0, 0, "Wait... You donÅft remember anything? Do, you donÅft even remember me, your very-very-very-very precious and lovely robot?"));
+            StartCoroutine(Timer(3f, 0, 0, "Wait... You do not remember anything? Do, you do not even remember me, your very-very-very-very precious and lovely robot?"));
         }
         else if (timerRunning == false && dialogue0 == 7)
         {
-            StartCoroutine(Timer(9.5f, 0, 1, "If you donÅft remember anything, then I will teach you something basic. You can walk with [W] [A] [S] and [D]. [W] for moving forward, [S] for moving backward, [A] for moving to the left, and [D] for moving to the right. You can also jump with the [SPACE] button."));
+            StartCoroutine(Timer(9.5f, 0, 1, "If you do not remember anything, then I will teach you something basic. You can walk with [W] [A] [S] and [D]. [W] for moving forward, [S] for moving backward, [A] for moving to the left, and [D] for moving to the right. You can also jump with the [SPACE] button."));
         }
         else if (timerRunning == false && dialogue0 == 8)
         {
@@ -115,7 +115,7 @@ public class DialogueCollisionChecker : MonoBehaviour
         }
         else if (timerRunning == false && dialogue1 == 3)
         {
-            StartCoroutine(Timer(6f, 1, 0, "Let's start with getting out of this room first. You can open a door with the [E] button. The door is there beside the curtain."));
+            StartCoroutine(Timer(6f, 1, 0, "Let us start with getting out of this room first. You can open a door with the [E] button. The door is there beside the curtain."));
         }
         else if (timerRunning == false && dialogue1 == 4)
         {
