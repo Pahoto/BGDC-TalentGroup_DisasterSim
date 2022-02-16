@@ -19,7 +19,7 @@ public class SceneTransition : MonoBehaviour
     }
     void Call()
     {
-        stageManager.EndStage();
+        stageManager.ExitStage();
     }
     void OnTriggerEnter(Collider other)
     {

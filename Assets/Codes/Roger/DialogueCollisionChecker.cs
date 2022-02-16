@@ -71,7 +71,7 @@ public class DialogueCollisionChecker : MonoBehaviour
         }
         else if (timerRunning == false && dialogue0 == 2)
         {
-            StartCoroutine(Timer(2.5f, 0, 0, "What? No, you can not, you have to go now!"));
+            StartCoroutine(Timer(2.5f, 0, 0, "What? No, you can't, you have to go now!"));
         }
         else if (timerRunning == false && dialogue0 == 3)
         {
@@ -80,7 +80,7 @@ public class DialogueCollisionChecker : MonoBehaviour
         }
         else if (timerRunning == false && dialogue0 == 4)
         {
-            StartCoroutine(Timer(3f, 0, 0, "Where are we going...? What!? DonÅft you remember? Were not you the one who told me to prepare for today? What has happened to you?"));
+            StartCoroutine(Timer(3f, 0, 0, "Where are we going...? What!? DonÅ't you remember? Weren't you the one who told me to prepare for today? What's happened to you?"));
         }
         else if (timerRunning == false && dialogue0 == 5)
         {
@@ -88,11 +88,11 @@ public class DialogueCollisionChecker : MonoBehaviour
         }
         else if (timerRunning == false && dialogue0 == 6)
         {
-            StartCoroutine(Timer(3f, 0, 0, "Wait... You do not remember anything? Do, you do not even remember me, your very-very-very-very precious and lovely robot?"));
+            StartCoroutine(Timer(3f, 0, 0, "Wait... You don't remember anything? Do, you don't even remember me, your very-very-very-very precious and lovely robot?"));
         }
         else if (timerRunning == false && dialogue0 == 7)
         {
-            StartCoroutine(Timer(9.5f, 0, 1, "If you do not remember anything, then I will teach you something basic. You can walk with [W] [A] [S] and [D]. [W] for moving forward, [S] for moving backward, [A] for moving to the left, and [D] for moving to the right. You can also jump with the [SPACE] button."));
+            StartCoroutine(Timer(9.5f, 0, 1, "If you don't remember anything, then I will teach you something basic. You can walk with [W] [A] [S] and [D]. [W] for moving forward, [S] for moving backward, [A] for moving to the left, and [D] for moving to the right. You can also jump with the [SPACE] button."));
         }
         else if (timerRunning == false && dialogue0 == 8)
         {
@@ -107,15 +107,15 @@ public class DialogueCollisionChecker : MonoBehaviour
         if(dialogue1key == true && dialogue1 == 1)
         {
             StartCoroutine(ShowDialogueBox(0f));
-            StartCoroutine(Timer(0f, 1, 1, "Hmm.. it turns out that you are smart enough."));
+            StartCoroutine(Timer(0f, 1, 1, "Hmm.. It turns out that you are smart enough."));
         }
         else if (timerRunning == false && dialogue1 == 2)
         {
-            StartCoroutine(Timer(4f, 1, 0, "Now, as I said before, you need to go! Go to your grandmaÅfs house, I will lead you!"));
+            StartCoroutine(Timer(4f, 1, 0, "Now, as I said before, you need to go! Go to your grandmaÅ's house, I'll lead you!"));
         }
         else if (timerRunning == false && dialogue1 == 3)
         {
-            StartCoroutine(Timer(6f, 1, 0, "Let us start with getting out of this room first. You can open a door with the [E] button. The door is there beside the curtain."));
+            StartCoroutine(Timer(6f, 1, 0, "Let's start with getting out of this room first. You can open a door with the [E] button. The door is there beside the curtain."));
         }
         else if (timerRunning == false && dialogue1 == 4)
         {
@@ -128,15 +128,15 @@ public class DialogueCollisionChecker : MonoBehaviour
             if (dialogue2key == true && dialogue2 == 1 && Input.GetKeyDown(KeyCode.E))
             {
                 StartCoroutine(ShowDialogueBox(0f));
-                StartCoroutine(Timer(0f, 2, 2, "The door doesnÅft open!  WhereÅfs the key?"));
+                StartCoroutine(Timer(0f, 2, 2, "The door doesnÅ't open!  WhereÅ's the key?"));
             }
             else if (timerRunning == false && dialogue2 == 2)
             {
-                StartCoroutine(Timer(4f, 2, 0, "How do I know, you donÅft remember that you have a habit of keeping your key in a different locker? Now you donÅft remember where you put the key-"));
+                StartCoroutine(Timer(4f, 2, 0, "How do I know, you donÅ't remember that you have a habit of keeping your key in a different locker? Now you donÅ't remember where you put the key."));
             }
             else if (timerRunning == false && dialogue2 == 3)
             {
-                StartCoroutine(Timer(7.5f, 2, 2, "Sttt.. youÅfre so noisy."));
+                StartCoroutine(Timer(7.5f, 2, 2, "Sssttt.. youÅ're so noisy."));
             }
             else if (timerRunning == false && dialogue2 == 4)
             {
@@ -144,7 +144,7 @@ public class DialogueCollisionChecker : MonoBehaviour
             }
             else if (timerRunning == false && dialogue2 == 5)
             {
-                StartCoroutine(Timer(1f, 2, 1, "Alright, I will shut my mouth up. You better find the key quickly. You can interact with it or any items with the [F] button."));
+                StartCoroutine(Timer(1f, 2, 1, "Alright, I'll shut my mouth up. You better find the key quickly. You can interact with any items by the [F] button."));
             }
             else if (timerRunning == false && dialogue2 == 6)
             {
@@ -169,7 +169,7 @@ public class DialogueCollisionChecker : MonoBehaviour
         }
         else if (timerRunning == false && dialogue3 == 2)
         {
-            StartCoroutine(Timer(2f, 3, 1, "Now, letÅfs go out!"));
+            StartCoroutine(Timer(2f, 3, 1, "Now, letÅ's go out!"));
         }
         else if (timerRunning == false && dialogue3 == 3)
         {

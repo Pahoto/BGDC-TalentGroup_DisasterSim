@@ -14,6 +14,8 @@ public class KeyDoor : MonoBehaviour
 
     public AudioSource openSound = null;
     public AudioSource closeSound = null;
+    public AudioSource cardSound = null;
+    public AudioSource unlockSound = null;
 
     void Start()
     {
@@ -42,7 +44,6 @@ public class KeyDoor : MonoBehaviour
     {
         if (doorTriggered && Input.GetKeyDown(KeyCode.E))
         {
-            if (crosshair.isCardObtained) unlockDoor = true;
             if (unlockDoor && !pauseInteraction)
             {
                 if (!openingDoor)
@@ -61,6 +62,12 @@ public class KeyDoor : MonoBehaviour
                     openingDoor = false;
                     StartCoroutine(PauseInteraction());
                 }
+            }
+            else if (crosshair.isCardObtained)
+            {
+                unlockDoor = true;
+                cardSound.Play();
+                unlockSound.Play();
             }
         }
     }

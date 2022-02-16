@@ -19,6 +19,7 @@ public class TabletHandler : MonoBehaviour
     public AudioSource walkSound = null;
     public AudioSource jumpSound = null;
     public AudioSource landSound = null;
+    public AudioSource getItemSound = null;
     public PlayerMovement playerMovement = null;
 
     // Start is called before the first frame update
@@ -27,6 +28,7 @@ public class TabletHandler : MonoBehaviour
         tablet.transform.localScale = new Vector3(0, 0, 0);
         puzzle.transform.localScale = new Vector3(0, 0, 0);
         playerMovement = FindObjectOfType<PlayerMovement>();
+        getItemSound = gameObject.GetComponent<AudioSource>();
     }
 
     void OnTriggerEnter(Collider approachingCollider)
@@ -70,6 +72,7 @@ public class TabletHandler : MonoBehaviour
             StartCoroutine(HideCrosshiar());
             StartCoroutine(PauseInteraction());
             takeTablet = true;
+            getItemSound.Play();
             DisableMovementSound();
             player.GetComponent<PlayerMovement>().enabled = false;
         }

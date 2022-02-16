@@ -29,7 +29,9 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource walkSound = null;
     public AudioSource jumpSound = null;
     public AudioSource landSound = null;
-    bool isWalking = false;
+    public AudioSource bedSound = null;
+    public BedTrigger bedTrigger = null;
+    public bool isWalking = false;
     public bool isPressed = false;
     bool isJump = false;
 
@@ -43,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
         obstacle = GameObject.Find("LALALA");
 
         walkSound = this.GetComponent<AudioSource>();
+        bedTrigger = FindObjectOfType<BedTrigger>();
     }
     void CheckWalkButtonPressed()
     {
@@ -67,11 +70,21 @@ public class PlayerMovement : MonoBehaviour
         CheckWalkButtonPressed();
         if (!isWalking && isPressed)
         {
-            walkSound.Play();
+            if (bedTrigger.onBed)
+            {
+                bedSound.Play();
+                walkSound.Stop();
+            }
+            else
+            {
+                walkSound.Play();
+                bedSound.Stop();
+            }
             isWalking = true;
         }
         else if (!isPressed)
         {
+            bedSound.Stop();
             walkSound.Stop();
             isWalking = false;
         }
@@ -85,25 +98,20 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isGrounded)
         {
-            if (yDirection.y < 0f)
-            {
-                yDirection.y = 0f;
-                if (isJump)
-                {
-                    landSound.Play();
-                    walkSound.Play();
-                    isJump = false;
-                }
-            }
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && !isJump && !isRoofed)
             {
                 yDirection.y = Mathf.Sqrt(-2f * gravity * jumpHeight);
-                if (!isJump && !isRoofed)
-                {
-                    jumpSound.Play();
-                    walkSound.Stop();
-                    isJump = true;
-                }
+                jumpSound.Play();
+                bedSound.Stop();
+                walkSound.Stop();
+                isJump = true;
+            }
+            else if (yDirection.y <= 0f && isJump)
+            {
+                yDirection.y = 0f;
+                landSound.Play();
+                walkSound.Play();
+                isJump = false;
             }
         }
         SetJump();
