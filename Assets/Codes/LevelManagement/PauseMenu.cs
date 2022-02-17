@@ -7,8 +7,9 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseUI = null;
     bool isGamePaused = false;
     public StageManager stageManager = null;
-    public AudioSource rainSound = null;
+    public AudioSource buttonSound = null;
     public AudioMixer audioMixer = null;
+    public AudioListener audioListener = null;
     public Slider volumeSlider = null;
     void SetVolSlider()
     {
@@ -21,6 +22,7 @@ public class PauseMenu : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         stageManager = FindObjectOfType<StageManager>();
+        audioListener = FindObjectOfType<AudioListener>();
         SetVolSlider();
         pauseUI.SetActive(false);
     }
@@ -34,7 +36,6 @@ public class PauseMenu : MonoBehaviour
     public void PauseGame()
     {
         Time.timeScale = 0f;
-        rainSound.Stop();
         isGamePaused = true;
         pauseUI.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
@@ -44,7 +45,6 @@ public class PauseMenu : MonoBehaviour
         pauseUI.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1f;
-        rainSound.Play();
         isGamePaused = false;
     }
     public void QuitGame()
@@ -57,8 +57,18 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!isGamePaused) PauseGame();
-            else ContinueGame();
+            if (!isGamePaused)
+            {
+                buttonSound.Play();
+                audioListener.enabled = false;
+                PauseGame();
+            }
+            else
+            {
+                audioListener.enabled = true;
+                buttonSound.Play();
+                ContinueGame();
+            }
         }
     }
 }
